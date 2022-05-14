@@ -1,0 +1,85 @@
+﻿@model MVC_Library.Models.PeoplePhonesViewModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>Person</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Person.Name)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Person.Name)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Person.Email)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Person.Email)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Person.BirthDate)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Person.BirthDate)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Person.IsLibrarian)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Person.IsLibrarian)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Person.CEP)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Person.CEP)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Person.State)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Person.State)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Person.City)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Person.City)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Person.Address)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Person.Address)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Person.HouseNumber)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Person.HouseNumber)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Person.Phones)
+        </dt>
+        <dd class="col-sm-10">
+            <ul>
+                @foreach (var phone in Model.Phones)
+                {
+                    <li>
+                        @Html.DisplayFor(modelItem => phone.Number)
+                    </li>
+                }
+            </ul>
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Person.Cpf">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

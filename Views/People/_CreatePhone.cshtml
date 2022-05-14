@@ -1,0 +1,17 @@
+﻿@model MVC_Library.Models.Phone
+
+<div class="row">
+    <div class="col-md-8">
+        <div class="form-group">
+            <label asp-for="Number" class="control-label"></label>
+            <input asp-for="Number" class="form-control" asp-items="ViewBag.phone"/>
+            <span asp-validation-for="Number" class="text-danger" ></span>
+        </div>
+    </div>
+</div>
+
+
+@section Scripts {
+
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

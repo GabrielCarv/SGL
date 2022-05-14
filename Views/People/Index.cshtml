@@ -1,0 +1,90 @@
+﻿@model IEnumerable<PeoplePhonesViewModel>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Person.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Person.Email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Person.BirthDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Person.State)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Person.City)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Person.Address)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Person.HouseNumber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Person.Phones)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Person.IsLibrarian)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Person.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Person.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Person.BirthDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Person.State)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Person.City)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Person.Address)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Person.HouseNumber)
+            </td>
+            <td>
+                <ul>
+                    @foreach (var phone in item.Phones)
+                    {
+                        <li>
+                            @Html.DisplayFor(modelItem => phone.Number)
+                        </li>
+                    }
+                </ul>
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Person.IsLibrarian)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Person.Cpf">Edit</a>
+                <a asp-action="Details" asp-route-id="@item.Person.Cpf">Details</a>
+                <a asp-action="Delete" asp-route-id="@item.Person.Cpf">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

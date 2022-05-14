@@ -1,0 +1,85 @@
+﻿@model MVC_Library.Models.Rent
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>Rent</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="input-group mb-3">
+                <label asp-for="RentDate" class="control-label"></label>
+                <input asp-for="RentDate" class="form-control" placeholder="Rent Date" />
+                <span asp-validation-for="RentDate" class="text-danger"></span>
+                <div class="input-group-append">
+                    <div class="input-group-text">
+                        <span class="fas fa-lock"></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="input-group mb-3">
+                <label asp-for="ReturnDate" class="control-label"></label>
+                <input asp-for="ReturnDate" class="form-control" placeholder="Return Date" />
+                <span asp-validation-for="ReturnDate" class="text-danger"></span>
+                <div class="input-group-append">
+                    <div class="input-group-text">
+                        <span class="fas fa-lock"></span>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="input-group mb-3">
+                <label asp-for="RealReturnDate" class="control-label"></label>
+                <input asp-for="RealReturnDate" class="form-control" placeholder="Real Return Date" />
+                <span asp-validation-for="RealReturnDate" class="text-danger"></span>
+                <div class="input-group-append">
+                    <div class="input-group-text">
+                        <span class="fas fa-lock"></span>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="input-group mb-3">
+                <label asp-for="Cpf" class="control-label"></label>
+                <input asp-for="Cpf" class="form-control" placeholder="Cpf" />
+                <span asp-validation-for="Cpf" class="text-danger"></span>
+                <div class="input-group-append">
+                    <div class="input-group-text">
+                        <span class="fas fa-lock"></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="input-group mb-3">
+                <label asp-for="InventoryId" class="control-label"></label>
+                <select asp-for="InventoryId" class="form-control" asp-items="ViewBag.InventoryId"></select>
+                <div class="input-group-append">
+                    <div class="input-group-text">
+                        <span class="fas fa-lock"></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary btn-block" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

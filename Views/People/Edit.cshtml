@@ -1,0 +1,170 @@
+﻿@model MVC_Library.Models.Person
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>Person</h4>
+<hr />
+<div class="row">
+    <div class="col-md-8">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Cpf" />
+
+            <div class="input-group mb-3">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+                <div class="input-group-append">
+                    <div class="input-group-text">
+                        <span class="fas fa-lock"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="input-group mb-3">
+                <label asp-for="Email" class="control-label"></label>
+                <input asp-for="Email" class="form-control" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+                <div class="input-group-append">
+                    <div class="input-group-text">
+                        <span class="fas fa-lock"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="input-group mb-3">
+                <label asp-for="BirthDate" class="control-label"></label>
+                <input asp-for="BirthDate" class="form-control" />
+                <span asp-validation-for="BirthDate" class="text-danger"></span>
+                <div class="input-group-append">
+                    <div class="input-group-text">
+                        <span class="fas fa-lock"></span>
+                    </div>
+                </div>
+            </div>
+
+            <div>
+                <input class="form-check-input" asp-for="IsLibrarian" /> @Html.DisplayNameFor(model => model.IsLibrarian)
+            </div>
+
+            <div class="input-group mb-3" id="divPassword">
+                <label asp-for="Password" class="control-label"></label>
+                <input asp-for="Password" class="form-control" />
+                <span asp-validation-for="Password" class="text-danger"></span>
+                <div class="input-group-append">
+                    <div class="input-group-text">
+                        <span class="fas fa-lock"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="input-group mb-3">
+                <label asp-for="CEP" class="control-label"></label>
+                <input asp-for="CEP" onblur="searchCep(this.value);" class="form-control" />
+                <span asp-validation-for="CEP" class="text-danger"></span>
+                <div class="input-group-append">
+                    <div class="input-group-text">
+                        <span class="fas fa-lock"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="input-group mb-3">
+                <label asp-for="State" class="control-label"></label>
+                <input asp-for="State" class="form-control">
+                <span asp-validation-for="State" class="text-danger"></span>
+                <div class="input-group-append">
+                    <div class="input-group-text">
+                        <span class="fas fa-lock"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="input-group mb-3">
+                <label asp-for="City" class="control-label"></label>
+                <input asp-for="City" class="form-control" />
+                <span asp-validation-for="City" class="text-danger"></span>
+                <div class="input-group-append">
+                    <div class="input-group-text">
+                        <span class="fas fa-lock"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="input-group mb-3">
+                <label asp-for="Address" class="control-label"></label>
+                <input asp-for="Address" class="form-control" />
+                <span asp-validation-for="Address" class="text-danger"></span>
+                <div class="input-group-append">
+                    <div class="input-group-text">
+                        <span class="fas fa-lock"></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="input-group mb-3">
+                <label asp-for="HouseNumber" class="control-label"></label>
+                <input asp-for="HouseNumber" class="form-control" />
+                <span asp-validation-for="HouseNumber" class="text-danger"></span>
+                <div class="input-group-append">
+                    <div class="input-group-text">
+                        <span class="fas fa-lock"></span>
+                    </div>
+                </div>
+            </div>
+
+            <div id="_phone">
+                @foreach (Phone phone in ViewBag.phone)
+                {
+                    @Html.Partial("_CreatePhone", phone)
+                }
+            </div>
+
+            <div>
+                <button type="button" id="NewNumberEdit" class="btn btn-success btn-block">Add Number</button>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary btn-block" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+    <script src="~/js/jsCommon.js"></script>
+
+    <script>
+        $("#NewNumberEdit").on("click", function () {
+            $.ajax({
+                url: 'https://localhost:44351/People/PartialCreate',
+                success: function (view) {
+                    var buttId = Math.random() * 10;
+                    var divFone = document.createElement('div');
+                    divFone.className = 'form-group';
+
+                    var buttonRemove = document.createElement('button');
+                    var text = document.createTextNode(' X ');
+
+                    buttonRemove.type = 'button';
+                    buttonRemove.id = 'buttId' + buttId;
+                    buttonRemove.setAttribute('onclick', 'RemovePhone(this.id)');
+                    buttonRemove.className = 'btn btn-danger';
+
+                    buttonRemove.appendChild(text);
+
+                    divFone.appendChild(buttonRemove);
+                    divFone.insertAdjacentHTML('afterbegin', view);
+
+                    var divPhone = document.getElementById("_phone");
+                    divPhone.appendChild(divFone);
+
+                }
+            });
+        });
+    </script>
+
+}

@@ -1,0 +1,12 @@
+﻿@model MVC_Library.Models.BookCategory
+
+<div class="row">
+    <div class="col-md-12">
+        <label asp-for="CategoryId" class="control-label"></label>
+        <select multiple  asp-for="CategoryId" class="form-control" name="CategoryId" asp-items="ViewBag.SelectedCategory"></select>
+    </div>
+</div>
+
+    @section Scripts {
+        @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    }
